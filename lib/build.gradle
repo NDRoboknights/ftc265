@@ -106,8 +106,8 @@ afterEvaluate {
         publications {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
-                groupId = "com.spartronics4915.lib"
-                artifactId "ftc265"
+                groupId = "com.roboknights4348.lib"
+                artifactId "wpiforftc"
                 version = android.defaultConfig.versionName
                 artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
 
