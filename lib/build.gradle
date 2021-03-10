@@ -108,7 +108,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = "com.roboknights4348.lib"
                 artifactId "wpiforftc"
-                version = android.defaultConfig.versionName
+                version = '1.0'
                 artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
 
                 pom.withXml {
