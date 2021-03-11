@@ -1,2 +1,3 @@
 rootProject.name='wpiforftc'
 include ':lib'
+include ':core'
