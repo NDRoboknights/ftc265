@@ -1,0 +1,5 @@
+before_install:
+  - chmod +x gradlew
+install:
+  - sdkmanager "ndk;21.0.6113669"
+  - ./gradlew :core:clean :core:build :core:install
