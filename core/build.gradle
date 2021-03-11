@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
+group = 'com.github.NDRoboknights'
+
 //apply from: "$project.rootDir/spotless.gradle"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
