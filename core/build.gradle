@@ -3,8 +3,6 @@ apply plugin: 'maven-publish'
 
 group = 'com.github.NDRoboknights'
 
-//apply from: "$project.rootDir/spotless.gradle"
-
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -17,7 +15,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 13 // This number just needs to increase monotonically after every version change
-        versionName "2.1.8"
+        versionName "1.9"
 
         consumerProguardFiles 'consumer-rules.pro'
 

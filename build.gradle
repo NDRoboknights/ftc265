@@ -6,9 +6,14 @@ buildscript {
         jcenter()
     }
     dependencies {
+//        classpath 'ru.vyarus:gradle-pom-plugin:2.1.0'
         classpath 'com.android.tools.build:gradle:4.1.2'
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.28.0'
     }
+}
+
+plugins{
+    id 'maven-publish'
 }
 
 allprojects {
