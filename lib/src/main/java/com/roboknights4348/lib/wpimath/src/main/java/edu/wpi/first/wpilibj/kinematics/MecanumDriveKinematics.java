@@ -8,7 +8,6 @@ import com.arcrobotics.ftclib.geometry.Translation2d;
 import com.arcrobotics.ftclib.kinematics.wpilibkinematics.MecanumDriveWheelSpeeds;
 import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.math.MathSharedStore;
 import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.math.MathUsageId;
-import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 
 import org.ejml.simple.SimpleMatrix;
 

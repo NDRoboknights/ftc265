@@ -5,7 +5,6 @@
 package com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.wpilibj.system.plant;
 
 import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.wpilibj.system.LinearSystem;
-import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.wpilibj.system.plant.DCMotor;
 import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.wpiutil.math.Matrix;
 import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.wpiutil.math.Nat;
 import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.wpiutil.math.VecBuilder;

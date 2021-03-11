@@ -18,9 +18,6 @@ import com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.wpiutil.math.
 import java.util.function.BiFunction;
 
 
-import javax.sql.RowSet;
-
-
 /**
  * Kalman filters combine predictions from a model and measurements to give an estimate of the true
  * system state. This is useful because many states cannot be measured directly as a result of
