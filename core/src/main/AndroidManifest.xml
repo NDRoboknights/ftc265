@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.spartronics4915.lib">
+    package="com.github.NDRoboknights.ftc265">
 
     <uses-permission android:name="android.permission.CAMERA" />
 </manifest>
