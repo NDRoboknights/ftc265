@@ -8,37 +8,6 @@ import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class WPIUtilJNI {
-    static boolean libraryLoaded = false;
-    static RuntimeLoader<WPIUtilJNI> loader = null;
-
-    static {
-        if (Helper.getExtractOnStaticLoad()) {
-            try {
-                loader =
-                        new RuntimeLoader<>(
-                                "wpiutiljni", RuntimeLoader.getDefaultExtractionRoot(), WPIUtilJNI.class);
-                loader.loadLibrary();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                System.exit(1);
-            }
-            libraryLoaded = true;
-        }
-    }
-
-    /**
-     * Force load the library.
-     */
-    public static synchronized void forceLoad() throws IOException {
-        if (libraryLoaded) {
-            return;
-        }
-        loader =
-                new RuntimeLoader<>(
-                        "wpiutiljni", RuntimeLoader.getDefaultExtractionRoot(), WPIUtilJNI.class);
-        loader.loadLibrary();
-        libraryLoaded = true;
-    }
 
     public static native long now();
 

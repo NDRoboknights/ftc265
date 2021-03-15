@@ -34,18 +34,6 @@ public final class RuntimeLoader<T> {
         m_extractionRoot = extractionRoot;
     }
 
-    /**
-     * Gets the default extration root location (~/.wpilib/nativecache).
-     */
-    public static synchronized String getDefaultExtractionRoot() {
-        if (defaultExtractionRoot != null) {
-            return defaultExtractionRoot;
-        }
-        String home = System.getProperty("user.home");
-        defaultExtractionRoot = Paths.get(home, ".wpilib", "nativecache").toString();
-        return defaultExtractionRoot;
-    }
-
     private String getLoadErrorMessage(UnsatisfiedLinkError ule) {
         StringBuilder msg = new StringBuilder(512);
         msg.append(m_libraryName)

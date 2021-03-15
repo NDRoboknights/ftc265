@@ -14,37 +14,6 @@ public final class WPIMathJNI {
     static boolean libraryLoaded = false;
     static RuntimeLoader<WPIMathJNI> loader = null;
 
-    static {
-        if (Helper.getExtractOnStaticLoad()) {
-            try {
-                loader =
-                        new RuntimeLoader<>(
-                                "wpimathjni", RuntimeLoader.getDefaultExtractionRoot(), WPIMathJNI.class);
-                loader.loadLibrary();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                System.exit(1);
-            }
-            libraryLoaded = true;
-        }
-    }
-
-    /**
-     * Force load the library.
-     *
-     * @throws IOException If the library could not be loaded or found.
-     */
-    public static synchronized void forceLoad() throws IOException {
-        if (libraryLoaded) {
-            return;
-        }
-        loader =
-                new RuntimeLoader<>(
-                        "wpimathjni", RuntimeLoader.getDefaultExtractionRoot(), WPIMathJNI.class);
-        loader.loadLibrary();
-        libraryLoaded = true;
-    }
-
     /**
      * Solves the discrete alegebraic Riccati equation.
      *
