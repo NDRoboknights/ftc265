@@ -28,7 +28,7 @@ android {
     ndkVersion "21.0.6113669"
 
     defaultConfig {
-        minSdkVersion 24
+        minSdkVersion 25
         targetSdkVersion 29
         versionCode 13 // This number just needs to increase monotonically after every version change
         versionName "1.9"
