@@ -4,12 +4,13 @@
 
 package com.roboknights4348.lib.wpiutil.src.main.java.edu.wpi.first.wpiutil;
 
-import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class WPIUtilJNI {
 
-    public static native long now();
+    public static long now(){
+        return System.nanoTime();
+    }
 
     public static native void addPortForwarder(int port, String remoteHost, int remotePort);
 
