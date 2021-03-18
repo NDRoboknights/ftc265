@@ -3,15 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 
-#include "edu_wpi_first_math_WPIMathJNI.h"
+#include "core\src\main\java\com\roboknights4348\lib\wpimath\src\main\java\edu\wpi\first\math\com_roboknights4348_lib_wpimath_src_main_java_edu_wpi_first_math_WPIMathJNI.h"
 #include "native/include/wpi/jni_util.h"
 #include "Eigen/src/Core/Ref.h"
 #include "Eigen/src/Eigenvalues/EigenSolver.h"
 #include "Eigen/src/Core/Matrix.h"
-#include "edu_wpi_first_wpiutil_WPIUtilJNI.h"
-#include "wpi/PortForwarder.h"
-#include "wpi/jni_util.h"
-#include "wpi/timestamp.h"
 #include "../../../../../../AppData/Local/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/jni.h"
 
 using namespace wpi::java;
@@ -157,66 +153,4 @@ Java_com_roboknights4348_lib_wpimath_src_main_java_edu_wpi_first_math_WPIMathJNI
 
     return isStabilizable;
 }
-#include "edu_wpi_first_wpiutil_WPIUtilJNI.h"
-#include "wpi/PortForwarder.h"
-#include "wpi/jni_util.h"
-#include "wpi/timestamp.h"
-
-using namespace wpi::java;
-
-extern "C" {
-
-JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) {
-    JNIEnv* env;
-    if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
-        return JNI_ERR;
-    }
-
-    return JNI_VERSION_1_6;
-}
-
-JNIEXPORT void JNICALL JNI_OnUnload(JavaVM* vm, void* reserved) {}
-
-/*
- * Class:     edu_wpi_first_wpiutil_WPIUtilJNI
- * Method:    now
- * Signature: ()J
- */
-JNIEXPORT jlong
-extern "C" jlong
-Java_com_roboknights4348_lib_wpiutil_src_main_java_edu_wpi_first_wpiutil_WPIUtilJNI_now
-        (JNIEnv*, jclass)
-{
-    return wpi::Now();
-}
-
-/*
- * Class:     edu_wpi_first_wpiutil_WPIUtilJNI
- * Method:    addPortForwarder
- * Signature: (ILjava/lang/String;I)V
- */
-JNIEXPORT void JNICALL
-        Java_com_roboknights4348_lib_wpiutil_src_main_java_edu_wpi_first_wpiutil_WPIUtilJNI_addPortForwarder
-        (JNIEnv* env, jclass, jint port, jstring remoteHost, jint remotePort)
-{
-wpi::PortForwarder::GetInstance().Add(static_cast<unsigned int>(port),
-        JStringRef{env, remoteHost}.str(),
-static_cast<unsigned int>(remotePort));
-}
-
-/*
- * Class:     edu_wpi_first_wpiutil_WPIUtilJNI
- * Method:    removePortForwarder
- * Signature: (I)V
- */
-JNIEXPORT void JNICALL
-        Java_com_roboknights4348_lib_wpiutil_src_main_java_edu_wpi_first_wpiutil_WPIUtilJNI_removePortForwarder
-        (JNIEnv* env, jclass, jint port)
-{
-wpi::PortForwarder::GetInstance().Remove(port);
-}
-
-}  // extern "C"
-
-
 }  // extern "C"

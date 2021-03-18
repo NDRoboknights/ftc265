@@ -4,15 +4,13 @@
 
 package com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.math;
 
-import com.roboknights4348.lib.wpiutil.src.main.java.edu.wpi.first.wpiutil.RuntimeLoader;
 
-import java.io.IOException;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public final class WPIMathJNI {
     static boolean libraryLoaded = false;
-    static RuntimeLoader<WPIMathJNI> loader = null;
 
     /**
      * Solves the discrete alegebraic Riccati equation.
