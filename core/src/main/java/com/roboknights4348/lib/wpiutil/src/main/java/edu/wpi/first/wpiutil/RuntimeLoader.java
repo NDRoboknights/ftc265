@@ -4,6 +4,7 @@
 
 package com.roboknights4348.lib.wpiutil.src.main.java.edu.wpi.first.wpiutil;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -25,14 +26,14 @@ public final class RuntimeLoader<T> {
     private static String defaultExtractionRoot;
 
     /** Gets the default extration root location (~/.wpilib/nativecache). */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static synchronized String getDefaultExtractionRoot() {
         if (defaultExtractionRoot != null) {
             return defaultExtractionRoot;
         }
         String home = System.getProperty("user.home");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            defaultExtractionRoot = Paths.get(home, ".wpilib", "nativecache").toString();
-        }
+        defaultExtractionRoot = Paths.get(home, ".wpilib", "nativecache").toString();
+
         return defaultExtractionRoot;
     }
 
@@ -71,6 +72,8 @@ public final class RuntimeLoader<T> {
     }
 
     /** Loads a native library. */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("UnsafeDynamicallyLoadedCode")
     @SuppressWarnings("PMD.PreserveStackTrace")
     public void loadLibrary() throws IOException {
         try {
@@ -97,7 +100,6 @@ public final class RuntimeLoader<T> {
                                 throw new IOException(getLoadErrorMessage(ule));
                             }
                             jniLibrary.getParentFile().mkdirs();
-                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                                 try (OutputStream os = Files.newOutputStream(jniLibrary.toPath())) {
                                     byte[] buffer = new byte[0xFFFF]; // 64K copy buffer
                                     int readBytes;
@@ -107,7 +109,6 @@ public final class RuntimeLoader<T> {
                                 }
                             }
                             System.load(jniLibrary.getAbsolutePath());
-                        }
                     }
                 }
             }
@@ -115,6 +116,7 @@ public final class RuntimeLoader<T> {
     }
 
     /** Load a native library by directly hashing the file. */
+    @SuppressLint("UnsafeDynamicallyLoadedCode")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressWarnings({
             "PMD.NPathComplexity",

@@ -6,11 +6,29 @@ package com.roboknights4348.lib.wpimath.src.main.java.edu.wpi.first.math;
 
 
 
+import android.util.Log;
+
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-public final class WPIMathJNI {
+public final class WPIMathJNI
+{
+
     static boolean libraryLoaded = false;
+
+    static final String kLogTag = "wpiforftc";
+
+    static {
+        try {
+            Log.d(kLogTag, "Attempting to load native code");
+
+            System.loadLibrary("wpimathjni");
+
+        } catch (UnsatisfiedLinkError e) {
+            Log.e(kLogTag, "Failed to load native code", e);
+        }
+    }
 
     /**
      * Solves the discrete alegebraic Riccati equation.
