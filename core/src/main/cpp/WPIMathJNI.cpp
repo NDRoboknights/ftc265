@@ -8,6 +8,10 @@
 #include "Eigen/src/Core/Ref.h"
 #include "Eigen/src/Eigenvalues/EigenSolver.h"
 #include "Eigen/src/Core/Matrix.h"
+#include "edu_wpi_first_wpiutil_WPIUtilJNI.h"
+#include "wpi/PortForwarder.h"
+#include "wpi/jni_util.h"
+#include "wpi/timestamp.h"
 #include "../../../../../../AppData/Local/Android/Sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/jni.h"
 
 using namespace wpi::java;
@@ -46,7 +50,7 @@ extern "C" {
  * Signature: ([D[D[D[DII[D)V
  */
 JNIEXPORT void JNICALL
-Java_edu_wpi_first_math_WPIMathJNI_discreteAlgebraicRiccatiEquation
+Java_com_roboknights4348_lib_wpimath_src_main_java_edu_wpi_first_math_WPIMathJNI_discreteAlgebraicRiccatiEquation
         (JNIEnv *env, jclass, jdoubleArray A, jdoubleArray B, jdoubleArray Q,
          jdoubleArray R, jint states, jint inputs, jdoubleArray S) {
     jdouble *nativeA = env->GetDoubleArrayElements(A, nullptr);
@@ -91,7 +95,7 @@ Java_edu_wpi_first_math_WPIMathJNI_discreteAlgebraicRiccatiEquation
  * Signature: ([DI[D)V
  */
 JNIEXPORT void JNICALL
-Java_edu_wpi_first_math_WPIMathJNI_exp
+Java_com_roboknights4348_lib_wpimath_src_main_java_edu_wpi_first_math_WPIMathJNI_exp
         (JNIEnv *env, jclass, jdoubleArray src, jint rows, jdoubleArray dst) {
     jdouble *arrayBody = env->GetDoubleArrayElements(src, nullptr);
 
@@ -111,7 +115,7 @@ Java_edu_wpi_first_math_WPIMathJNI_exp
  * Signature: ([DID[D)V
  */
 JNIEXPORT void JNICALL
-Java_edu_wpi_first_math_WPIMathJNI_pow
+Java_com_roboknights4348_lib_wpimath_src_main_java_edu_wpi_first_math_WPIMathJNI_pow
         (JNIEnv *env, jclass, jdoubleArray src, jint rows, jdouble exponent,
          jdoubleArray dst) {
     jdouble *arrayBody = env->GetDoubleArrayElements(src, nullptr);
@@ -132,7 +136,7 @@ Java_edu_wpi_first_math_WPIMathJNI_pow
  * Signature: (II[D[D)Z
  */
 JNIEXPORT jboolean JNICALL
-Java_edu_wpi_first_math_WPIMathJNI_isStabilizable
+Java_com_roboknights4348_lib_wpimath_src_main_java_edu_wpi_first_math_WPIMathJNI_isStabilizable
         (JNIEnv *env, jclass, jint states, jint inputs, jdoubleArray aSrc,
          jdoubleArray bSrc) {
     jdouble *nativeA = env->GetDoubleArrayElements(aSrc, nullptr);
@@ -153,5 +157,66 @@ Java_edu_wpi_first_math_WPIMathJNI_isStabilizable
 
     return isStabilizable;
 }
+#include "edu_wpi_first_wpiutil_WPIUtilJNI.h"
+#include "wpi/PortForwarder.h"
+#include "wpi/jni_util.h"
+#include "wpi/timestamp.h"
+
+using namespace wpi::java;
+
+extern "C" {
+
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) {
+    JNIEnv* env;
+    if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+        return JNI_ERR;
+    }
+
+    return JNI_VERSION_1_6;
+}
+
+JNIEXPORT void JNICALL JNI_OnUnload(JavaVM* vm, void* reserved) {}
+
+/*
+ * Class:     edu_wpi_first_wpiutil_WPIUtilJNI
+ * Method:    now
+ * Signature: ()J
+ */
+JNIEXPORT jlong
+extern "C" jlong
+Java_com_roboknights4348_lib_wpiutil_src_main_java_edu_wpi_first_wpiutil_WPIUtilJNI_now
+        (JNIEnv*, jclass)
+{
+    return wpi::Now();
+}
+
+/*
+ * Class:     edu_wpi_first_wpiutil_WPIUtilJNI
+ * Method:    addPortForwarder
+ * Signature: (ILjava/lang/String;I)V
+ */
+JNIEXPORT void JNICALL
+        Java_com_roboknights4348_lib_wpiutil_src_main_java_edu_wpi_first_wpiutil_WPIUtilJNI_addPortForwarder
+        (JNIEnv* env, jclass, jint port, jstring remoteHost, jint remotePort)
+{
+wpi::PortForwarder::GetInstance().Add(static_cast<unsigned int>(port),
+        JStringRef{env, remoteHost}.str(),
+static_cast<unsigned int>(remotePort));
+}
+
+/*
+ * Class:     edu_wpi_first_wpiutil_WPIUtilJNI
+ * Method:    removePortForwarder
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL
+        Java_com_roboknights4348_lib_wpiutil_src_main_java_edu_wpi_first_wpiutil_WPIUtilJNI_removePortForwarder
+        (JNIEnv* env, jclass, jint port)
+{
+wpi::PortForwarder::GetInstance().Remove(port);
+}
+
+}  // extern "C"
+
 
 }  // extern "C"

@@ -6,15 +6,10 @@ package com.roboknights4348.lib.wpiutil.src.main.java.edu.wpi.first.wpiutil;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public final class WPIUtilJNI {
+public final class WPIUtilJNI
+{
 
-    public static long now(){
-        return System.nanoTime();
-    }
-
-    public static native void addPortForwarder(int port, String remoteHost, int remotePort);
-
-    public static native void removePortForwarder(int port);
+    public static long now(){return System.nanoTime();}
 
     public static class Helper {
         private static final AtomicBoolean extractOnStaticLoad = new AtomicBoolean(true);
