@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 
-#include "core\src\main\java\com\roboknights4348\lib\wpimath\src\main\java\edu\wpi\first\math\com_roboknights4348_lib_wpimath_src_main_java_edu_wpi_first_math_WPIMathJNI.h"
+#include "core/src/main/java/com/roboknights4348/lib/wpimath/src/main/java/edu/wpi/first/math/com_roboknights4348_lib_wpimath_src_main_java_edu_wpi_first_math_WPIMathJNI.h"
 #include "native/include/wpi/jni_util.h"
 #include "Eigen/src/Core/Ref.h"
 #include "Eigen/src/Eigenvalues/EigenSolver.h"
